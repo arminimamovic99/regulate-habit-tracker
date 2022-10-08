@@ -1,0 +1,25 @@
+<div class="table-container">
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+        <ng-container *ngFor="let day of days; let index = index" [matColumnDef]="day">
+            <th mat-header-cell *matHeaderCellDef>
+                {{day}}
+            </th>
+            <ng-container *ngIf="days.indexOf(day) == 0">
+                <td mat-cell *matCellDef="let data">
+                    {{data.name}}
+                </td>
+            </ng-container>
+            <ng-container *ngIf="days.indexOf(day) > 0">
+                <td mat-cell *matCellDef="let data" class="cell" (click)="onDateClick(data, day)">
+                    <ng-container *ngFor="let habit of allSelectedHabits">
+                        <p *ngIf="allSelectedHabits.length > 0 && habit.date == day && habit.data.id == data.id"> ✅ </p>
+                    </ng-container>
+                    
+                </td>
+            </ng-container>
+        </ng-container>
+     
+        <tr mat-header-row *matHeaderRowDef="days"></tr>
+        <tr mat-row *matRowDef="let row; columns: days;"></tr>
+    </table>
+</div>
