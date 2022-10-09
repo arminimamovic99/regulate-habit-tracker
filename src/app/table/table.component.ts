@@ -19,6 +19,7 @@ export class TableComponent implements OnInit {
   days: string[] = ["Habit"];
   allSelectedHabits: {data: IHabit, date: string}[] = []
   newData: Observable<IHabit>;
+  shouldSelectDate: boolean = true;
 
   @ViewChild(MatTable) table: MatTable<IHabit>;
 
@@ -44,15 +45,20 @@ export class TableComponent implements OnInit {
 
   onDateClick(data, day) {
     console.log(data, day)
-    if (this.allSelectedHabits.includes({
-      data,
-      date: day
+    this.allSelectedHabits.forEach((item) => {
+      if (item.data.name == data.name && item.date == day) {
+        this.shouldSelectDate = false;
+        return;
+      } else {
+        this.shouldSelectDate = true;
+      }
     })
-    ) return;
 
-    this.allSelectedHabits.push({
-      data,
-      date: day
-    })
+    if (this.shouldSelectDate) {
+      this.allSelectedHabits.push({
+        data,
+        date: day
+      })
+    }
   }
 }
