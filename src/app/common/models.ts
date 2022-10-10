@@ -3,3 +3,9 @@ export interface IHabit {
     name: string;
     count: number;
 }
+
+export interface IMonthWithData {
+    id: number,
+    name: string,
+    habits: IHabit[]
+}

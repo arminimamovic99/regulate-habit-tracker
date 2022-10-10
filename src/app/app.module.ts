@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule}  from "@angular/material/dialog";
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -34,6 +35,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component'
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule
