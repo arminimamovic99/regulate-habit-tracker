@@ -1,5 +1,10 @@
 export const data = {
-      "Months" : [
+      "months" : [
+        {
+          name: "January",
+          id: 1,
+          habits: []
+        },
         {
           id: 10,
           name: "October",

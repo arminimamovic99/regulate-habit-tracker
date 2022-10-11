@@ -1,12 +1,13 @@
 
-    <mat-form-field appearance="fill" class="select">
-        <mat-label>Select month</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let month of months" [value]="month.id" (click)="onSelectMonth(month)">
-            {{month.name}}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
+<mat-form-field appearance="fill" class="select">
+    <mat-label>Select month</mat-label>
+    <mat-select>
+        <mat-option *ngFor="let month of months" [value]="month.id" (click)="onSelectMonth(month)">
+        {{month.name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
 <div class="table-container">
     <table mat-table [dataSource]="currentMonth.habits" class="mat-elevation-z8">
         <ng-container *ngFor="let day of days; let index = index" [matColumnDef]="day">
