@@ -74,9 +74,7 @@ export class TableComponent implements OnInit {
   }
 
   onSelectMonth(month: {id: number, name: string}) {
-    const selectedMonth = this.data.months.find((m) => {
-      return m.id == month.id
-    })
+    const selectedMonth = this.data.months.find((m) => m.id == month.id)
 
     if (!selectedMonth) return;
 
