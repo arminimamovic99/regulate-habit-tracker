@@ -4,22 +4,23 @@ import { MatTable } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { IHabit, IMonthWithData } from '../common/models'
+import { IHabit, IMonthWithData, IData } from '../common/models'
 import { data, months } from '../common/mock-data'
 import { HabitsService } from '../habits.service';
 
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { StateService } from '../state/state.service';
 
-
-// TODO refactor
-
+/* State service usage is practically not needed because at this point only one component uses the data 
+ But it has been implemented for practice
+*/
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.sass']
 })
 export class TableComponent implements OnInit {
-  data: {months: IMonthWithData[]};
+  data: IData;
   days: string[] = [];
   allSelectedHabits: {data: IHabit, date: string}[] = [];
   currentMonth: IMonthWithData;
@@ -33,6 +34,7 @@ export class TableComponent implements OnInit {
 
   constructor(
     private habitsService: HabitsService,
+    private stateService: StateService,
     private _snackBar: MatSnackBar
     ) {
     this.newData = this.habitsService.$habitToAdd
@@ -44,8 +46,8 @@ export class TableComponent implements OnInit {
       }) 
     ).subscribe()
 
-
     this.data = data
+    this.stateService.setData(this.data)
   }
 
   ngOnInit(): void {
@@ -53,6 +55,8 @@ export class TableComponent implements OnInit {
     this.currentMonth = this.data.months.find((m) => {
       return m.id === new Date().getMonth() + 1
     })
+
+    this.stateService.setCurrentMonth(this.currentMonth)
 
     if (!this.currentMonth) this.currentMonth = this.data.months[0]
 
@@ -62,23 +66,11 @@ export class TableComponent implements OnInit {
     }
   }
 
-  onDateClick(data, day) {
-    console.log(data, day)
-    this.allSelectedHabits.forEach((item) => {
-      if (item.data.name == data.name && item.date == day) {
-        this.shouldSelectDate = false;
-        return;
-      } else {
-        this.shouldSelectDate = true;
-      }
+  onDateClick(data: { id: any; }, day: any) {
+    this.currentMonth.selectedHabits.push({
+      habitId: data.id,
+      date: day
     })
-
-    if (this.shouldSelectDate) {
-      this.allSelectedHabits.push({
-        data,
-        date: day
-      })
-    }
   }
 
   onSelectMonth(month: {id: number, name: string}) {

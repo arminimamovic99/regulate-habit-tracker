@@ -3,7 +3,8 @@ export const data = {
         {
           name: "January",
           id: 1,
-          habits: []
+          habits: [],
+          selectedHabits: []
         },
         {
           id: 10,
@@ -24,6 +25,20 @@ export const data = {
               name: 'Meditate',
               count: 30
             }
+          ],
+          selectedHabits: [
+            {
+              habitId: 1,
+              date: '12'
+            },
+            {
+              habitId: 1,
+              date: '1'
+            },
+            {
+              habitId: 2,
+              date: '10'
+            },
           ]
         },
         {
@@ -45,7 +60,8 @@ export const data = {
               name: 'Deep Work',
               count: 30
             }
-          ]
+          ],
+          selectedHabits: []
         }
       ]
 }
