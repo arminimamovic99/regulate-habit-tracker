@@ -18,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { TableComponent } from './table/table.component';
 import { AddHabitComponent } from './add-habit/add-habit.component';
-import { ToolbarComponent } from './toolbar/toolbar.component'
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ReportsComponent } from './reports/reports.component'
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component'
     AppComponent,
     TableComponent,
     AddHabitComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

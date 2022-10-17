@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 
 import { AddHabitComponent } from './add-habit/add-habit.component'
+import { ReportsComponent } from './reports/reports.component'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,10 +13,17 @@ export class AppComponent {
 
   constructor(private dialog: MatDialog) { }
 
-  openDialog() {
+  openFormDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
 
     this.dialog.open(AddHabitComponent, dialogConfig);
+  }
+
+  openReportsDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    
+    this.dialog.open(ReportsComponent, dialogConfig)
   }
 }

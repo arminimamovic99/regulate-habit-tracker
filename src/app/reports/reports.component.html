@@ -1,0 +1,16 @@
+
+
+
+<h2 mat-dialog-title>Habits report for current month</h2>
+
+<mat-dialog-content>
+    <p *ngFor="let habit of habitsAndCompletion" [ngClass]="{'success' : habit.goalReached, 'fail' : !habit.goalReached}">
+        In the current month, you have completed <b>{{habit.name}}</b>, {{habit.count}} times
+    </p>
+    
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+</mat-dialog-actions>
+

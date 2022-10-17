@@ -71,6 +71,8 @@ export class TableComponent implements OnInit {
       habitId: data.id,
       date: day
     })
+
+    this.stateService.setCurrentMonth(this.currentMonth)
   }
 
   onSelectMonth(month: {id: number, name: string}) {
