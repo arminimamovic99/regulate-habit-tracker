@@ -41,15 +41,11 @@ export const data = {
             },
           ]
         },
+        
         {
           id: 8,
           name: "November",
           habits: [
-            {
-              id: 0,
-              name: 'Nofap',
-              count: 30
-            },
             {
               id: 1,
               name: 'Cold shower',
