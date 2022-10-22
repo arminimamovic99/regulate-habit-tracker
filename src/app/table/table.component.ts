@@ -11,9 +11,6 @@ import { HabitsService } from '../habits.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StateService } from '../state/state.service';
 
-/* State service usage is practically not needed because at this point only one component uses the data 
- But it has been implemented for practice
-*/
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -66,13 +63,23 @@ export class TableComponent implements OnInit {
     }
   }
 
-  onDateClick(data: { id: any; }, day: any) {
+  onDateClick(data: { id: any; }, day: string) {
+    if (this.hasDateAlreadyBeenSelected(day)) return; 
+
     this.currentMonth.selectedHabits.push({
       habitId: data.id,
       date: day
     })
 
     this.stateService.setCurrentMonth(this.currentMonth)
+  }
+
+  hasDateAlreadyBeenSelected = (day: string): boolean => {
+    let selectedHabit = this.currentMonth.selectedHabits.
+    find(habit => habit.date === day.toString())
+
+    if (!selectedHabit) return false
+    return true;
   }
 
   onSelectMonth(month: {id: number, name: string}) {
