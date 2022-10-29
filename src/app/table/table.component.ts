@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatTable } from '@angular/material/table';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { IHabit, IMonthWithData, IData } from '../common/models'
@@ -25,6 +25,7 @@ export class TableComponent implements OnInit {
   
   shouldSelectDate: boolean = true;
   newData: Observable<IHabit>;
+  sub: Subscription;
   
   @ViewChild(MatTable) table: MatTable<IHabit>;
 
@@ -36,7 +37,7 @@ export class TableComponent implements OnInit {
     ) {
     this.newData = this.habitsService.$habitToAdd
 
-    this.newData.pipe(
+    this.sub = this.newData.pipe(
       tap(x => {
         this.currentMonth.habits.push(x)
         this.table.renderRows()
@@ -93,5 +94,9 @@ export class TableComponent implements OnInit {
  
     this.currentMonth = selectedMonth
     this.table.renderRows()
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
